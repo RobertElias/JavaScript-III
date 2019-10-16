@@ -33,7 +33,17 @@ GameObject.prototype.destroy = () => {
   * takeDamage() // prototype method -> returns the string '<object name> took damage.'
   * should inherit destroy() from GameObject's prototype
 */
+function CharacterStats(att) {
+  GameObject.call(this, att);
+  this.healthPoints = att.healthPoints
 
+};
+//Inherit destroy()
+CharacterStats.prototype = Object.create(GameObject.prototype); 
+
+CharacterStats.prototype.takeDamage = () =>{
+  return `${this.name} took damage.`;
+}
 /*
   === Humanoid (Having an appearance or character resembling that of a human.) ===
   * team
@@ -43,32 +53,17 @@ GameObject.prototype.destroy = () => {
   * should inherit destroy() from GameObject through CharacterStats
   * should inherit takeDamage() from CharacterStats
 */
- 
+// Test you work by un-commenting these 3 objects and the list of console logs below:
+
+
 /*
   * Inheritance chain: GameObject -> CharacterStats -> Humanoid
   * Instances of Humanoid should have all of the same properties as CharacterStats and GameObject.
   * Instances of CharacterStats should have all of the same properties as GameObject.
 */
 
-// Test you work by un-commenting these 3 objects and the list of console logs below:
-
-// function Humanoid(att){
-//  this.team = att.team,
-//  this.weapons = att.weapons,
-//  this.language = att.language,
-//  
-//  console.log(this); 
-// }
-
-// Humanoid.prototype.createdAt = function() {
-//   return `Mage was create on ${this.CreatedAt}`;
-//   console.log(mage.createdAt);
-// };
 
 
-// Pet.prototype.eat = function(){
-//   return `${this.newName} is a ${this.newSpecies} and ${this.newPronoun} likes to eat ${this.newFavFood}`;
-// }; 
   const mage = new Humanoid({
     createdAt: new Date(),
     dimensions: {
