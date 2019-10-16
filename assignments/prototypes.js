@@ -23,7 +23,7 @@ function GameObject(att){
   this.dimensions = att.dimensions
 };
 
-GameObject.prototype.destroy = () => {
+GameObject.prototype.destroy = function() {
   return `${this.name} was removed from the game.`
 };
 
@@ -34,14 +34,14 @@ GameObject.prototype.destroy = () => {
   * should inherit destroy() from GameObject's prototype
 */
 function CharacterStats(att) {
-  GameObject.call(this, att);
+  
   this.healthPoints = att.healthPoints
+  GameObject.call(this, att);
 
 };
-//Inherit destroy()
-CharacterStats.prototype = Object.create(GameObject.prototype); 
-
-CharacterStats.prototype.takeDamage = () =>{
+//Inherits destroy() from GameObject
+CharacterStats.prototype= Object.create(GameObject.prototype);
+CharacterStats.prototype.takeDamage = function() {
   return `${this.name} took damage.`;
 }
 /*
@@ -53,7 +53,20 @@ CharacterStats.prototype.takeDamage = () =>{
   * should inherit destroy() from GameObject through CharacterStats
   * should inherit takeDamage() from CharacterStats
 */
-// Test you work by un-commenting these 3 objects and the list of console logs below:
+// Humanoid Constructor Function
+function Humanoid(att){
+  this.team = att.team,
+  this.weapons = att.weapons[0],
+  this.language = att.language,
+  CharacterStats.call(this, att);
+
+  console.log(this);
+ }
+ //Inherit
+ Humanoid.prototype = Object.create(CharacterStats.prototype);
+ Humanoid.prototype.greet = function() {
+  return `${this.name} offers a greeting in ${this.language}`; 
+}
 
 
 /*
