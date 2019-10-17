@@ -1,5 +1,6 @@
+# Robert Elias
 # JavaScript - III
-
+ 
 This challenge focuses on using the `this` keyword as well as getting comfortable with prototypes by building out a fantasy themed video game.
 
 ## Set Up The Project With Git
